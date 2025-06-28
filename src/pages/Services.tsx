@@ -5,9 +5,35 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Mountain, ArrowLeft, Shield, Coins, FileText, Globe, Zap, CheckCircle } from "lucide-react";
+import { toast } from "sonner";
 
 const Services = () => {
   const navigate = useNavigate();
+
+  const handleServiceAction = (serviceId: number) => {
+    switch (serviceId) {
+      case 1: // Digital Identity Verification
+        navigate('/dashboard');
+        break;
+      case 2: // Smart Contract Notarization
+        navigate('/dashboard/services/notarization');
+        break;
+      case 3: // Druk Token Payments
+        toast.success("Thank you! We'll notify you when Druk Token Payments are available.");
+        break;
+      case 4: // Decentralized Governance
+        toast.success("Decentralized Governance is coming soon! Stay tuned.");
+        break;
+      case 5: // Lightning Network Integration
+        navigate('/dashboard/services/lightning');
+        break;
+      case 6: // Carbon Credit Trading
+        navigate('/dashboard/services/carbon-credits');
+        break;
+      default:
+        break;
+    }
+  };
 
   const services = [
     {
@@ -140,9 +166,9 @@ const Services = () => {
                   </div>
 
                   <Button
+                    onClick={() => handleServiceAction(service.id)}
                     variant={service.status === 'active' ? 'default' : 'outline'}
                     className={service.status === 'active' ? 'bg-bhutan-red hover:bg-bhutan-deep-red w-full' : 'w-full'}
-                    disabled={service.status === 'coming-soon'}
                   >
                     {service.status === 'active' ? 'Access Service' : 
                      service.status === 'beta' ? 'Try Beta' : 'Notify Me'}

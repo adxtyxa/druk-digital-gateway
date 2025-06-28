@@ -9,6 +9,9 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import UpgradeProfile from "./pages/UpgradeProfile";
 import Services from "./pages/Services";
+import NotarizationService from "./pages/NotarizationService";
+import LightningService from "./pages/LightningService";
+import CarbonCreditService from "./pages/CarbonCreditService";
 import BusinessDashboard from "./pages/BusinessDashboard";
 import KYC from "./pages/KYC";
 import BusinessKYC from "./pages/BusinessKYC";
@@ -30,6 +33,9 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/upgrade-profile" element={<UpgradeProfile />} />
             <Route path="/dashboard/services" element={<Services />} />
+            <Route path="/dashboard/services/notarization" element={<NotarizationService />} />
+            <Route path="/dashboard/services/lightning" element={<LightningService />} />
+            <Route path="/dashboard/services/carbon-credits" element={<CarbonCreditService />} />
             <Route path="/business-dashboard" element={<BusinessDashboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
