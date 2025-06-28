@@ -34,7 +34,7 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
 
   const connectWallet = async () => {
     try {
-      if (typeof window.ethereum !== 'undefined') {
+      if (typeof window !== 'undefined' && window.ethereum) {
         const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         
@@ -81,7 +81,7 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
   // Check if wallet is already connected on page load
   useEffect(() => {
     const checkConnection = async () => {
-      if (typeof window.ethereum !== 'undefined') {
+      if (typeof window !== 'undefined' && window.ethereum) {
         try {
           const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
           const accounts = await web3Provider.listAccounts();
@@ -104,7 +104,7 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
 
   // Listen for account changes
   useEffect(() => {
-    if (typeof window.ethereum !== 'undefined') {
+    if (typeof window !== 'undefined' && window.ethereum) {
       const handleAccountsChanged = (accounts: string[]) => {
         if (accounts.length === 0) {
           disconnectWallet();
@@ -116,7 +116,9 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
       window.ethereum.on('accountsChanged', handleAccountsChanged);
 
       return () => {
-        window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+        if (window.ethereum) {
+          window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+        }
       };
     }
   }, []);
