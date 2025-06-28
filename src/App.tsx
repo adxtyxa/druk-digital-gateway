@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Web3Provider } from "./contexts/Web3Context";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
+import UpgradeProfile from "./pages/UpgradeProfile";
+import Services from "./pages/Services";
 import BusinessDashboard from "./pages/BusinessDashboard";
 import KYC from "./pages/KYC";
 import BusinessKYC from "./pages/BusinessKYC";
@@ -26,6 +28,8 @@ const App = () => (
             <Route path="/kyc" element={<KYC />} />
             <Route path="/business-kyc" element={<BusinessKYC />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/upgrade-profile" element={<UpgradeProfile />} />
+            <Route path="/dashboard/services" element={<Services />} />
             <Route path="/business-dashboard" element={<BusinessDashboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

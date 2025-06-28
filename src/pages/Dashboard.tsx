@@ -4,7 +4,8 @@ import { useWeb3 } from '@/contexts/Web3Context';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mountain, LogOut, User, Shield } from "lucide-react";
+import { Mountain, LogOut, User, Shield, ArrowUpCircle, Zap } from "lucide-react";
+import CertificateGenerator from '@/components/CertificateGenerator';
 
 const Dashboard = () => {
   const { account, disconnectWallet } = useWeb3();
@@ -94,13 +95,20 @@ const Dashboard = () => {
               <CardTitle>Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <Button className="w-full bg-bhutan-red hover:bg-bhutan-deep-red">
-                Update Profile
+              <Button 
+                onClick={() => navigate('/dashboard/upgrade-profile')}
+                className="w-full bg-bhutan-red hover:bg-bhutan-deep-red"
+              >
+                <ArrowUpCircle className="w-4 h-4 mr-2" />
+                Upgrade Profile
               </Button>
-              <Button variant="outline" className="w-full">
-                Download Certificate
-              </Button>
-              <Button variant="outline" className="w-full">
+              <CertificateGenerator />
+              <Button 
+                onClick={() => navigate('/dashboard/services')}
+                variant="outline" 
+                className="w-full"
+              >
+                <Zap className="w-4 h-4 mr-2" />
                 View Services
               </Button>
             </CardContent>
